@@ -8,9 +8,9 @@
 	<body>
 
 	<div>
-		<button onclick="setGame()";> Click to Start </button>
+		<button onclick="setGame()"> Click to Start </button>
 	</div>
-
+	
 	<div class="mysteryWord">
 		<!--Use this div to create mystery word selected by computer-->
 		<span id="mysteryWord"></span><br>
@@ -41,14 +41,18 @@
 
 		//create variables
 		var playerSelection;
-//		var remainingGuesses = 15;
+		var remainingGuesses = 15;
 //		var wordSelection = [];
 		var lettersGuessed = [];
 		var wordBank = ["tent", "bear", "fire", "woods", "cabin", "mountain", "lantern", "backpack", "hatchet", "forest", "hike", "camp"];
 		var randomWord = [];
 		var randomArray;
 		var placeHolderArray = [];
-		var placeHolderString;
+		var placeHolderString = placeHolderArray.join("");
+		var lettersGuessedString;
+		var alphabet = "abcdefghijklmnopqrstuvwxyz";
+		var alphabetArr = (alphabet.split("")); 
+		
 		
 
 		//player starts game
@@ -64,16 +68,18 @@
 				console.log(randomWord.length);
 
 				//create mystery placeholder array for screen view
-				for (i=0; i<randomWord.length; i++) {
+				
+					for (i=0; i<randomWord.length; i++) {
 
-					placeHolderArray.push ("   ____   ");		
-
-				}
+					placeHolderArray.push (" __ ");		
+					}
+				
 			
 
 				console.log(placeHolderArray);
 				var placeHolderString = placeHolderArray.join("  ");
 				document.getElementById("mysteryWord").textContent = placeHolderString;
+				document.getElementById("guessesRemaining").textContent = remainingGuesses;
 			
 
 				//get the player selection set
@@ -86,9 +92,15 @@
 
 
 					//is selection in word?
-					if (randomArray.indexOf(playerSelection) == -1) {
-						lettersGuessed.push(playerSelection); //add check for guessing letter already in array and reducing number of guesses by 1
+					if (randomArray.indexOf(playerSelection) == -1 && lettersGuessed.indexOf(playerSelection) == -1 && alphabetArr.indexOf(playerSelection) != -1) {
+						lettersGuessed.push(playerSelection);
+						remainingGuesses = remainingGuesses - 1;
+						 //add check for guessing letter already in array and reducing number of guesses by 1
 						console.log(lettersGuessed);
+						console.log(remainingGuesses);
+						lettersGuessedString = lettersGuessed.join("");
+						document.getElementById("lettersGuessed").textContent = lettersGuessedString;
+						document.getElementById("guessesRemaining").textContent = remainingGuesses;
 					}
 
 						//else, where in the word is it?
@@ -110,10 +122,16 @@
 								placeHolderArray.splice(indexes[i], 1, playerSelection);
 
 							} console.log(placeHolderArray);
-							  placeHolderString = placeHolderArray.join("  ");
-							  document.getElementById("mysteryWord").textContent = placeHolderString;
+							  placeHolderString = placeHolderArray.join("");
+							  document.getElementById("mysteryWord").innerHTML = placeHolderString;
 						} 
-					}
+
+
+						//if placeHolderArray.indexOf(" __ ") == -1 {
+
+						//	alert(You guessed it! randomWord was it!);
+						//}
+					} 
 				}	
 
 						
