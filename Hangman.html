@@ -30,9 +30,11 @@
 
 	<div class="gameResult">
 		<!--Use this div to display game result-->
-
+		Wins:  <span id="wins"><span>
 	</div>
-
+	<div>
+	Losses:  <span id="losses"><span>
+	</span>
 
 
 
@@ -42,9 +44,8 @@
 		//create variables
 		var playerSelection;
 		var remainingGuesses = 15;
-//		var wordSelection = [];
 		var lettersGuessed = [];
-		var wordBank = ["tent", "bear", "fire", "woods", "cabin", "mountain", "lantern", "backpack", "hatchet", "forest", "hike", "camp"];
+		var wordBank = ["tent", "bear", "fire", "woods", "cabin", "mountain", "lantern", "backpack", "hatchet", "forest", "hike", "camp", "trail", "fox", "river", "outside", "campsite", "campfire", "stars", "compass", "whistle", "trek", "trees", "switchback", "appalachian", "backcountry", "gaiters", "gap", "junction", "trailhead", "boots"];
 		var randomWord = [];
 		var randomArray;
 		var placeHolderArray = [];
@@ -59,27 +60,30 @@
 		//function myGame () {
 		//computer pick random word
 			function setGame() {
-				
 				//get random word
 				var randomWord = wordBank[Math.floor(Math.random() * wordBank.length)];
 				var randomArray = (randomWord.split(""));
 				console.log(randomWord);
 				console.log(randomArray);
 				console.log(randomWord.length);
+				document.getElementById("losses").innerHTML = losses;
+				document.getElementById("wins").innerHTML = wins;
+
 
 				//create mystery placeholder array for screen view
-				
-					for (i=0; i<randomWord.length; i++) {
+				placeHolderArray = [];
 
-					placeHolderArray.push (" __ ");		
+					for (i=0; i<randomWord.length; i++) {
+					
+					placeHolderArray.push ("__");		
 					}
 				
 			
 
 				console.log(placeHolderArray);
 				var placeHolderString = placeHolderArray.join("  ");
-				document.getElementById("mysteryWord").textContent = placeHolderString;
-				document.getElementById("guessesRemaining").textContent = remainingGuesses;
+				document.getElementById("mysteryWord").innerHTML = placeHolderString;
+				document.getElementById("guessesRemaining").innerHTML = remainingGuesses;
 			
 
 				//get the player selection set
@@ -99,8 +103,8 @@
 						console.log(lettersGuessed);
 						console.log(remainingGuesses);
 						lettersGuessedString = lettersGuessed.join("");
-						document.getElementById("lettersGuessed").textContent = lettersGuessedString;
-						document.getElementById("guessesRemaining").textContent = remainingGuesses;
+						document.getElementById("lettersGuessed").innerHTML = lettersGuessedString;
+						document.getElementById("guessesRemaining").innerHTML = remainingGuesses;
 					}
 
 						//else, where in the word is it?
@@ -124,15 +128,34 @@
 							} console.log(placeHolderArray);
 							  placeHolderString = placeHolderArray.join("");
 							  document.getElementById("mysteryWord").innerHTML = placeHolderString;
-						} 
+						}
+						if (placeHolderString.indexOf("_") == -1 && remainingGuesses > 0)  {
 
+							alert("You guessed it!  The word was "+ randomWord + ".");
+							wins = (wins + 1);
+							document.getElementById("wins").innerHTML = wins;
+						}
+
+							else if (placeHolderString.indexOf("_") != -1 && remainingGuesses ==0) {
+
+							alert("You lost! Click start to get another word!");
+							losses = (losses + 1);
+							document.getElementById("losses").innerHTML = losses;
+						}
+
+								else {
+
+								}
+
+
+						}
 
 						//if placeHolderArray.indexOf(" __ ") == -1 {
 
 						//	alert(You guessed it! randomWord was it!);
 						//}
 					} 
-				}	
+					
 
 						
 
