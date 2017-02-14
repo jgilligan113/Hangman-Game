@@ -8,7 +8,7 @@
 	<body>
 
 	<div>
-		<button onclick="getWord()"> Click to play </button>
+		<button onclick="setGame()";> Click to Start </button>
 	</div>
 
 	<div class="mysteryWord">
@@ -54,61 +54,69 @@
 		//player starts game
 		//function myGame () {
 		//computer pick random word
-			function getWord() {
+			function setGame() {
 				
+				//get random word
 				var randomWord = wordBank[Math.floor(Math.random() * wordBank.length)];
-				
 				var randomArray = (randomWord.split(""));
 				console.log(randomWord);
 				console.log(randomArray);
 				console.log(randomWord.length);
 
+				//create mystery placeholder array for screen view
 				for (i=0; i<randomWord.length; i++) {
 
 					placeHolderArray.push ("   ____   ");		
 
 				}
+			
+
 				console.log(placeHolderArray);
 				var placeHolderString = placeHolderArray.join("  ");
 				document.getElementById("mysteryWord").textContent = placeHolderString;
+			
 
+				//get the player selection set
 				document.onkeyup = function addToPlayerSelection(event) {
+					
+					//define player selection and set to lowercase
 					playerSelection = event.key.toLowerCase();
-
-					if (randomArray.indexOf(playerSelection) == -1)
-						lettersGuessed.push(playerSelection);
-					if (randomArray.indexOf(playerSelection) != -1)
-
-						placeHolderArray.splice(randomArray.indexOf(playerSelection),randomArray.indexOf(playerSelection)+1, playerSelection);
-
-						console.log(placeHolderArray);
-
-						placeHolderString = placeHolderArray.join("  ");
-						document.getElementById("mysteryWord").textContent = placeHolderString;
-
-						//Array.splice(start_index, number_of_elements_to_remove);
+					console.log (playerSelection);
 
 
 
-					console.log(playerSelection);
-//					console.log(lettersGuessed.indexOf(playerSelection);
-					document.getElementById("lettersGuessed").textContent = lettersGuessed;
-				}
-				
-			}
-		//computer display spaces for player to begin guessing
+					//is selection in word?
+					if (randomArray.indexOf(playerSelection) == -1) {
+						lettersGuessed.push(playerSelection); //add check for guessing letter already in array and reducing number of guesses by 1
+						console.log(lettersGuessed);
+					}
 
+						//else, where in the word is it?
+						else {
+								
+							//get indexes where selection exists in randomArray
+							function getAllIndexes(arr, val) { 
+							var indexes = [];
+							for (i = 0; i < arr.length; i++)
+									if (arr[i]===val)
+									indexes.push(i);
+							 return(indexes);
+							}
+							var indexes = getAllIndexes(randomArray, playerSelection);
+							console.log(indexes);
 
-		// player picks
+							//replace "__" in placeHolderArray with playerSelection at indexes
+							for (i=0; i<indexes.length; i++) {
+								placeHolderArray.splice(indexes[i], 1, playerSelection);
 
+							} console.log(placeHolderArray);
+							  placeHolderString = placeHolderArray.join("  ");
+							  document.getElementById("mysteryWord").textContent = placeHolderString;
+						} 
+					}
+				}	
 
-		//if letter in computer random word, disply in spaces, if not, add to guesses array and subtract from remaining guesses by 1
-
-		//game over if user guesses word OR remainingGuesses reaches zero and not all letters are filled
-
-		//}
-
-
+						
 
 
 
