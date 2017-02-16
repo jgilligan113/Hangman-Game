@@ -105,7 +105,7 @@
 
 						else if (placeHolderString.indexOf("_") != -1 && remainingGuesses ==0) {
 
-							for (i=0; i<15; i++) {
+							for (i=0; i<1; i++) {
 								losses = (losses + 1);
 								document.getElementById("losses").innerHTML = losses;
 								document.getElementById("winnerLoser").innerHTML = "DANG IT, click above for the next word.";
