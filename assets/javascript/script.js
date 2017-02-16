@@ -26,7 +26,8 @@
 				console.log(randomArray);
 				console.log(randomWord.length);
 
-				var lettersGuessedString = "..."
+				var lettersGuessedString = "...";
+				var lettersGuessed = [];
 				document.getElementById("winnerLoser").innerHTML = blank;
 
 				//create mystery placeholder array for screen view
