@@ -1,6 +1,7 @@
 		//create variables
 		var wins = 0;
 		var losses = 0;
+
 		var playerSelection;
 		var remainingGuesses = 10;
 		var lettersGuessed = [];
@@ -12,6 +13,7 @@
 		var lettersGuessedString;
 		var alphabet = "abcdefghijklmnopqrstuvwxyz";
 		var alphabetArr = (alphabet.split("")); 
+		var blank = "";
 
 		//player starts game
 
@@ -24,14 +26,18 @@
 				console.log(randomArray);
 				console.log(randomWord.length);
 
-
+				var lettersGuessedString = "..."
+				document.getElementById("winnerLoser").innerHTML = blank;
 
 				//create mystery placeholder array for screen view
 				placeHolderArray = [];
-
+				remainingGuesses = 15;
+				document.getElementById("lettersGuessed").innerHTML = lettersGuessedString;
+				document.getElementById("guessesRemaining").innerHTML = remainingGuesses;
+	
 					for (i=0; i<randomWord.length; i++) {
 					
-					placeHolderArray.push ("__");		
+					placeHolderArray.push ("_");		
 					}
 				
 				console.log(placeHolderArray);
@@ -85,24 +91,39 @@
 						}
 						if (placeHolderString.indexOf("_") == -1 && remainingGuesses > 0)  {
 
-							alert("You guessed it!  The word was "+ randomWord + ".");
+						
 							wins = (wins + 1);
 							document.getElementById("winText").innerHTML = wins;
+							document.getElementById("winnerLoser").innerHTML = "WAY TO GO! Click above for the next word";
+							document.onkeyup = function() {
+
+								return false;
+							}
+							
 						}
 
 
-							else if (placeHolderString.indexOf("_") != -1 && remainingGuesses ==0) {
+						else if (placeHolderString.indexOf("_") != -1 && remainingGuesses ==0) {
 
-							alert("You lost! Click start to get another word!");
-							losses = (losses + 1);
-							document.getElementById("losses").innerHTML = losses;
+							for (i=0; i<15; i++) {
+								losses = (losses + 1);
+								document.getElementById("losses").innerHTML = losses;
+								document.getElementById("winnerLoser").innerHTML = "DANG IT, click above for the next word.";
+								document.onkeyup = function() {
+
+									return false;
+								}
+							}
 						}
 
 								else {
+										 return false;
 
 								}
 
+			
 
 						}
+					
 
 				} 

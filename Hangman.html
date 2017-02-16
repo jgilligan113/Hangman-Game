@@ -1,55 +1,63 @@
 <!DOCTYPE html>
 <html lang="en-us">
-	<head>
+<head>
 		<meta charset="UTF-8">
 		<title>Outside Hangman</title>
 		<script src="assets/javascript/script.js"></script>
 			<!--jQueryAddition-->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
   <!-- Latest compiled and minified JavaScript -->
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
- <!-- Latest compiled and minified CSS -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
- <!--JLG Customizations-->
-	</head>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 	
-	<body>
-	<nav class="navbar navbar-default">
-  		<div class="container-fluid">
-  			<a class="navbar-brand" href="#">Outdoor Hangman</a>
-  		</div>
-  			<button type="button" class="btn btn-success" onclick="setGame();"> Get Outside! </button>
+ <!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+		<link href="https://fonts.googleapis.com/css?family=Amatic+SC|Averia+Libre|Vibur" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+		<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+
+		
+		
+ </head>
+	
+<body>
+
+<nav class="navbar navbar-default">
+	<div class="container-fluid head">
+    	<div class="navbar-header ">
+
+  			<button type="button" class="btn btn-info" onclick="setGame();"> Get Outside! </button>Press "Get Outside!" to get a new word.
 		</div>
+	</div>	
+
   	</nav>
 
 	<div class="container">	
-		<div class="mysteryWord">
+		<div class="row">
+			<div class="col-md-3 status">
+				<div class = "panel panel-success">
+					<div class="gameStatus">
+					<!--Use this div to display number of guesses remaining-->
+					Guesses Remaining: <br/>
+					<span id="guessesRemaining"></span><br><br/>
+					<!--Use this div to display selected letters-->
+					Your guesses: <br/>
+					<span id="lettersGuessed"></span><br><br/>
+					<!--Use this div to display game result-->
+					Wins:  <span id="winText"></span><br><br/>
+					Losses:  <span id="losses"></span><br/>	
+					</div>	
+				</div>
+			</div>		
+			<div class="col-md-8 mysteryWord"">
 			<!--Use this div to create mystery word selected by computer-->
-			<span id="mysteryWord"></span><br>
-		</div>
+			<span id="mysteryWord"></span><br><br><br>
+			<p><span id="winnerLoser"></span></p>
+			</div>	
 
-		<div class="gameStatus">
-			<!--Use this div to display number of guesses remaining-->
-		Guesses Remaining: <br/>
-		<span id="guessesRemaining"></span>
-		</div>
 
-		<div class="lettersGuessed">
-			<!--Use this div to display selected letters-->
-			Your guesses: <br/>
-			<span id="lettersGuessed"></span>
-		</div>
-
-		<div class="gameResult">
-			<!--Use this div to display game result-->
-			Wins:  <span id="winText"></span>
-		</div>
-		<div class="gameResult">
-		Losses:  <span id="losses"></span>
-
-	</div>			
+		</div>		
+	</div>
 	</body>
-  
+
 </html>    
